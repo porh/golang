@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Golang: Порівняння і тести</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/vendor/default.css">
+    <script src="js/vendor/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+
+<div class="container">
+        
+    <header>
+        <a href="/"><img src="images/logo.png" alt="Перейти на головну"></img></a>
+        <nav>
+            <li><a href="testsResults.html">Порівняння і тести</a></li>
+            <li><a href="goAndC.html">Go, C та С++</a></li>
+            <li><a href="https://golang.org/dl/">Завантажити</a></li>
+        </nav>
+    </header>
+
+    <div class="main-and-sidebar-wrapper">
+        <section class="main">
+            <h2>Порівняння і тести</h2>
+
+            <p>Для порівняння, якщо вибрати кілька важливих факторів, що впливають на продуктивність і простоту використання, то виходить така таблиця:
+             <table>
+               <thead>
+                  <tr>
+                     <th><strong>Мова </strong></th>
+                     <th><strong>Потоки vs. процеси</strong></th>
+                     <th><strong>Неблокуючі I/O </strong></th>
+                     <th><strong>Простота використання</strong></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><strong>PHP</strong></td>
+                     <td>Процеси </td>
+                     <td>Немає</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td><strong>Java</strong></td>
+                     <td>Потоки</td>
+                     <td>Доступні</td>
+                     <td>Потрібні колбеки</td>
+                  </tr>
+                  <tr>
+                     <td><strong>Node.js</strong></td>
+                     <td>Потоки</td>
+                     <td>Так</td>
+                     <td>Потрібні колбеки</td>
+                  </tr>
+                  <tr>
+                     <td><strong>Go</strong></td>
+                     <td>Потоки (горутини)</td>
+                     <td>Так</td>
+                     <td>Колбеки не потрібні </td>
+                  </tr>
+               </tbody>
+            </table>
+            </p>
+            <p>Тестування здійснювалось за допомогою простих http серверів, в окремому випадку на Go він має вигляд:
+                    <pre><code class="go">func ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+    // the underlying network call here is non-blocking
+    rows, err := db.Query("SELECT ...")
+
+    for _, row := range rows {
+        // do something with the rows,
+// each request in its own goroutine
+    }
+
+    w.Write(...) // write the response, also non-blocking
+
+}</code>            </pre>
+            </p>
+            <p>
+                Скільки мілісекунд потрібно на виконання всіх одночасних запитів. Чим менше тим краще
+                <img src="images/cf24e9fab7ba4b2d9196b75b8b5ec8ac.jpg">
+            </p>  
+            <p>
+                Скільки мілісекунд потрібно на виконання всіх одночасних запитів. Чим менше тим краще
+                <img src="images/ff79b786c2f14ff5bdacbfb4d81cde0f.jpg">
+            </p>  
+            <p>
+                Загальна кількість запитів в секунду. Чим вище, тим краще
+                <img src="images/755578efbcaf412db5f68254f1effd54.jpg">
+            </p>  
+            <p>
+                По матеріалам https://habr.com/company/mailru/blog/329258/
+            </p>  
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Oleksandr Parashchuk  2018</p>
+    </footer>
+
+</div>
+
+
+</body>
+</html>

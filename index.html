@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Golang infosite сайт про GO</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/vendor/default.css">
+    <script src="js/vendor/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+
+<div class="container">
+        
+    <header>
+        <a href="/"><img src="images/logo.png" alt="Перейти на головну"></img></a>
+        <nav>
+            <li><a href="testsResults.html">Порівняння і тести</a></li>
+            <li><a href="goAndC.html">Go, C та С++</a></li>
+            <li><a href="https://golang.org/dl/">Завантажити</a></li>
+        </nav>
+    </header>
+
+    <div class="main-and-sidebar-wrapper">
+        <section class="main">
+            <h2>Що таке GO?</h2>
+
+            <p>Go — компільована мова програмування із вбудованими засобами для паралельних обчислень 
+            і засобами віддаленого керування пакунками. Цю мову програмування розробив Google як 
+            частину проекту з розробки операційної системи Inferno. Початкова розробка Go почалася у 
+            вересні 2007 року, а безпосередньо проектували її Роберт Гризмер, Роб Пайк і Кен Томпсон. 
+            Офіційно мову представили у листопаді 2009 року. 
+            Підтримка мови здійснюється для операційних систем Linux, Android, Mac OS X та Windows.</p>
+            <p>Для відлагодження Go застосовують безкоштовний редактор LiteIDE. Демонстраційна програма "hello world" виглядає так:
+                <div class="doubleContent">
+                    <p>
+                        Програма буде виводити в консоль класичну фразу "hello world". 
+                    </p>
+                    <pre><code class="go">package main
+import "fmt"
+func main() {
+    fmt.Println("hello world")
+}</code>            </pre>
+
+                </div>
+            </p>
+            <p>
+                <div class="doubleContent">
+                    <p>
+                        Для запуску програми скопіюйте код у файл hello-world.go та скористайтеся командою go run.
+                        Інколи ми хотіли зібрати наші програми у виконувані файли. Ми можемо зробити це, скориставшись командою go build.
+                        Теперь ми можемо виконати наш виконуваний файл напряму.
+                    </p>
+                    <pre><code class="bash">$ go run hello-world.go
+hello world
+
+$ go build hello-world.go
+$ ls
+hello-world	hello-world.go
+
+$ ./hello-world
+hello world</code>            </pre>
+
+                </div>
+            </p>  
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Oleksandr Parashchuk  2018</p>
+    </footer>
+
+</div>
+
+
+</body>
+</html>

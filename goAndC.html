@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Golang infosite сайт про GO</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/vendor/default.css">
+    <script src="js/vendor/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+
+<div class="container">
+        
+    <header>
+        <a href="/"><img src="images/logo.png" alt="Перейти на головну"></img></a>
+        <nav>
+            <li><a href="testsResults.html">Порівняння і тести</a></li>
+            <li><a href="goAndC.html">Go, C та С++</a></li>
+            <li><a href="https://golang.org/dl/">Завантажити</a></li>
+        </nav>
+    </header>
+
+    <div class="main-and-sidebar-wrapper">
+        <section class="main">
+            <h2>Go, C та С++</h2>
+
+            <p>В Go можна застосовувати функції та класи описані на С і С++. 
+            Для цього під WINDOWS потрібен mingw з GCC компіляторами С і С++. Для підключення h файлів, їх необхідно внести перед імпортом С в закоментованому вигляді. 
+                <pre>Файл main.go:<code class="go">package main
+
+// #include &#60;example.h&#62;
+// #include "junk.h"
+import "C"
+import "fmt"
+import "time"
+
+func makeTimestamp() int64 {
+	return time.Now().UnixNano() / int64(time.Millisecond)
+}
+func main() {
+	a := makeTimestamp()
+	fmt.Printf("%d \n", a)
+	i := 0
+	for i <= 1000000000 {
+		i++
+	}
+	b := makeTimestamp() - a
+	fmt.Printf("%d \n", b)
+	C.x(10)
+	C.xc(10)
+	fmt.Printf("Done\n")
+}
+</code>         </pre>
+            </p>
+            <p>
+                <pre>Файл example.h:<code class="go">int xc(int);</code>         </pre>
+                <pre>Файл example.c:<code class="c++">#include &#60;stdio.h&#62;
+#include "windows.h"
+
+int xc( int y ) {
+	SYSTEMTIME time;
+	GetSystemTime(&time);
+	WORD millis1 = (time.wSecond * 1000) + time.wMilliseconds;
+	
+	//do something...
+	for (double count = 0; count <= 1000000000;) {
+		 count++;
+	}
+	
+	//SYSTEMTIME time;
+	GetSystemTime(&time);
+	WORD millis2 = (time.wSecond * 1000) + time.wMilliseconds;
+
+	printf("%d \n", millis2-millis1);
+    return y+1;
+}</code>         </pre>
+                <pre>Файл junk.h:<code class="c++">#ifndef __JUNK_HPP__
+#define __JUNK_HPP__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    int x(int y);
+#ifdef __cplusplus
+}
+#endif
+
+#endif</code>         </pre>
+                <pre>Файл junk.cpp:<code class="c++">#include <junk.h>
+#include &#60;stdio.h&#62;
+#include &#60;iostream&#62;
+#include "windows.h"
+
+int x(int y) {
+    std::cout << "hello" << std::endl;
+    //printf("Hello World\n");
+	
+	SYSTEMTIME time;
+	GetSystemTime(&time);
+	WORD millis1 = (time.wSecond * 1000) + time.wMilliseconds;
+	
+	//do something...
+	for (double count = 0; count <= 1000000000;) {
+		 count++;
+	}
+	
+	//SYSTEMTIME time;
+	GetSystemTime(&time);
+	WORD millis2 = (time.wSecond * 1000) + time.wMilliseconds;
+
+	printf("%d \n", millis2-millis1);
+
+
+	unsigned __int64 freq;
+	QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
+	double timerFrequency = (1.0/freq);
+	
+	unsigned __int64 startTime;
+	QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
+	
+	for (double count = 0; count <= 1000000000;) {
+		 count++;
+	}
+	
+	unsigned __int64 endTime;
+	QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
+	double timeDifferenceInMilliseconds = ((endTime-startTime) * timerFrequency);
+
+	printf("%d \n",timeDifferenceInMilliseconds);
+
+    return y;
+}</code>         </pre>
+            </p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Oleksandr Parashchuk  2018</p>
+    </footer>
+
+</div>
+
+
+</body>
+</html>
